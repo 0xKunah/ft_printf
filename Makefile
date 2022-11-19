@@ -6,11 +6,10 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/11/16 14:19:53 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/11/19 18:39:26 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY:	all clean fclean re test
 
 # ******** VARIABLES ******** #
 
@@ -32,7 +31,9 @@ DIR_HEADERS		=	include/
 
 HEADERS_LIST	=	ft_printf.h
 
-SRCS_LIST		=	ft_printf.c
+SRCS_LIST		=	ft_printf.c		ft_utils.c		\
+					ft_utils2.c						\
+					ft_printers.c	#ft_printers2.c	
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -50,7 +51,7 @@ RM				=	rm -rf
 
 MKDIR			=	mkdir -p
 
-AR				=	ar rc
+AR				=	ar rcs
 
 # ********* RULES ******** #
 
@@ -59,7 +60,12 @@ all				:	${NAME}
 # ---- Variables Rules ---- #
 
 ${NAME}			:	${OBJS} Makefile ${HEADERS}
+					@echo "\n\033[0;32m ✔️ Binaries compiled from \033[1;36m${DIR_SRCS} \033[0;32mto \033[1;36m${DIR_OBJS} !"		
 					${AR} ${NAME} ${OBJS}
+					@echo "\n\033[0;32m ✔️ Lib successfully built !"
+
+${COMP_NAME}	:	${OBJS} Makefile ${HEADERS}
+					${CC} ${CFLAGS} -I ${HEADERS} ${OBJS} ${OBJS_OUTPUT} -o ${COMP_NAME}
 
 # ---- Compiled Rules ---- #
 
@@ -70,16 +76,30 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS} Makefile
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
+					@echo "\n\033[0;32m ✔️ Successfully created binaries directory \033[1;36m${DIR_OBJS} !"
 
-# ---- Usual Commands ---- #
+# ---- Usual Rules ---- #
 
 clean			:
 					${RM} ${DIR_OBJS}
+					@echo "\n\033[0;31m ✔️ Successfully deleted binaries directory \033[1;36m${DIR_OBJS} !"
 
 fclean			:	clean
 					${RM} ${NAME}
+					@echo "\n\033[0;31m ✔️ Successfully deleted \033[1;36m${NAME} !"
 
 re				:	fclean all
+					@echo "\n\033[0;32m ✔️ Successfully re-compiled binaries and lib \033[0;36m${NAME} !"
 
 test			:
-					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c}
+					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
+					@echo "\n\033[0;32m ✔️ Successfully built test program to \033[0;36m${COMP_NAME} !"
+					@echo "\n\033[1;36mProgram output : \033[0;37m" && ./${COMP_NAME}
+
+check_leaks		:	test
+					@echo "\n\n\033[0;32m✔️ Program leaks: \033[0;36m"
+					##leaks --atExit -- ./${COMP_NAME} > leaks.txt
+					cat leaks.txt | grep "leaks for"
+					
+.PHONY:	all clean fclean re test
+.SILENT:

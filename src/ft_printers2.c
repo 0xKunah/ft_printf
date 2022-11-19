@@ -1,18 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printers2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 13:42:36 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/19 14:17:02 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2022/11/19 14:17:42 by dbiguene          #+#    #+#             */
+/*   Updated: 2022/11/19 14:17:43 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-int	ft_printf(const char *str, ...);
-
-#endif
