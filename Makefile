@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/11/19 18:39:26 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/11/20 14:13:16 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,9 @@ test			:
 					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
 					@echo "\n\033[0;32m ✔️ Successfully built test program to \033[0;36m${COMP_NAME} !"
 					@echo "\n\033[1;36mProgram output : \033[0;37m" && ./${COMP_NAME}
+debug			:
+					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -g -o ${COMP_NAME}
+					@echo "\n\033[0;32m ✔️ Successfully built debug program to \033[0;36m${COMP_NAME} !"
 
 check_leaks		:	test
 					@echo "\n\n\033[0;32m✔️ Program leaks: \033[0;36m"

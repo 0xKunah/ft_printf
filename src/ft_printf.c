@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:42:40 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/19 16:07:12 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/20 14:40:10 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ int	ft_printf(const char *str, ...)
 	total = 0;
 	while (*str)
 	{
+		i = 0;
 		while (str[++i] && str[i] != '%')
 			;
 		tmp = ft_substr(str, 0, i);
 		ft_putstr_fd(tmp, 1);
 		free(tmp);
-		if (ft_strchr("cspiudxX%", str[i + 1]))
+		if (str[i] && ft_strchr("cspdiuxX%", str[i + 1]))
 		{
 			if (str[i + 1] == 's')
 				ft_print_str(va_arg(args, char *));
-			if (str[i + 1] == 'c')
+			else if (str[i + 1] == 'c')
 				ft_print_char(va_arg(args, int));
-			if (str[i + 1] == 'd' || str[i + 1] == 'i')
+			else if (str[i + 1] == 'i' || str[i + 1] == 'd')
 				ft_print_nbr(va_arg(args, int));
 			i += 2;
 		}
@@ -50,5 +51,5 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	return (ft_printf("This %s is a string, this %c is a char, this %d is a digit and this %i is a int", "str", 'c', 2147483647, -24147483648));
+	return (ft_printf("This is a string: %s\nThis is a char: %c\nThis is a int: %i\nThis is a digit: %d\nThis is another digit: %d\n", "string", 'c', 15, 48, 65));
 }
