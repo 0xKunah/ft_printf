@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:37:45 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/21 13:39:33 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 18:32:43 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 		((unsigned char *)s)[i++] = 0;
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*t;
-
-	if (size && count != (count * size) / size)
-		return (NULL);
-	t = malloc(count * size);
-	if (!t)
-		return (NULL);
-	ft_bzero(t, count * size);
-	return ((void *)t);
 }
 
 static void	init_itoa(int *len, int *sign, int *factor, int *n)
@@ -62,7 +49,7 @@ char	*ft_itoa(int n)
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	init_itoa(&len, &sign, &factor, &n);
-	str = ft_calloc(len + 1, sizeof(char));
+	str = malloc(len + 1 * sizeof(char));
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -74,5 +61,6 @@ char	*ft_itoa(int n)
 		n %= factor;
 		factor /= 10;
 	}
+	str[i] = 0;
 	return (str);
 }

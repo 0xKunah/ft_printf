@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/11/21 16:10:04 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/11/21 17:03:39 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ DIR_HEADERS		=	include/
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	ft_printf.h
+HEADERS_LIST	=	ft_printf.h		ft_utils.h		\
+					ft_printers.h
 
 SRCS_LIST		=	ft_printf.c		ft_utils.c		\
 					ft_utils2.c						\
@@ -65,14 +66,14 @@ ${NAME}			:	${OBJS} Makefile ${HEADERS}
 					@echo "\n\033[0;32m ✔️ Lib successfully built !"
 
 ${COMP_NAME}	:	${OBJS} Makefile ${HEADERS}
-					${CC} ${CFLAGS} -I ${HEADERS} ${OBJS} ${OBJS_OUTPUT} -o ${COMP_NAME}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS}. ${OBJS} ${OBJS_OUTPUT} -o ${COMP_NAME}
 
 # ---- Compiled Rules ---- #
 
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS} Makefile
-					${CC} ${CFLAGS} -I ${HEADERS} -c $< -o $@
+					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
@@ -92,12 +93,12 @@ re				:	fclean all
 					@echo "\n\033[0;32m ✔️ Successfully re-compiled binaries and lib \033[0;36m${NAME} !"
 
 test			:
-					${CC} -I ${HEADERS} src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
+					${CC} -I ${DIR_HEADERS}. src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
 					@echo "\n\033[0;32m ✔️ Successfully built test program to \033[0;36m${COMP_NAME} !"
 					@echo "\n\033[1;36mProgram output : \033[0;37m" && ./${COMP_NAME}
 					
 debug			:
-					${CC} -I ${HEADERS} src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -g -o ${COMP_NAME}
+					${CC} -I ${DIR_HEADERS}. src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -g -o ${COMP_NAME}
 					@echo "\n\033[0;32m ✔️ Successfully built debug program to \033[0;36m${COMP_NAME} !"
 
 check_leaks		:	test

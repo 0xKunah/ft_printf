@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:44:49 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/21 16:08:48 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 18:34:15 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_print_str(char *s)
 {
 	if (s)
 		return ((int)write(1, s, ft_strlen(s)));
-	return (write(1, "(null)", 6));
+	return ((int)write(1, "(null)", 6));
 }
 
 int	ft_print_nbr(int n)
@@ -51,7 +51,18 @@ int	ft_print_nbr(int n)
 	ssize_t		len;
 
 	s = ft_itoa(n);
-	len = write(1, s, ft_strlen(s));
-	free(s);
-	return ((int)len);
+	if (s)
+	{
+		len = write(1, s, ft_strlen(s));
+		free(s);
+		return ((int)len);
+	}
+	return (-1);
+}
+
+int	ft_print_str_len(char *s, int len)
+{
+	if (s)
+		return ((int)write(1, s, len));
+	return ((int)write(1, "(null)", 6));
 }

@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:21:04 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/21 15:03:34 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 18:01:30 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	ft_print_nbr(int n);
 int	ft_print_unsigned(unsigned int n);
 int	ft_print_hex(unsigned int n, int is_upper);
 int	ft_print_pointer(size_t n);
+int	ft_print_str_len(char *s, int len);
 
 #endif

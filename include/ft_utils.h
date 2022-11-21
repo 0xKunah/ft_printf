@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:37:57 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/21 11:58:09 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 18:32:48 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ char	*ft_itoa_hex(int n);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 #endif
