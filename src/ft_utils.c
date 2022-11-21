@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:35:18 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/19 15:22:10 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 13:31:15 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	i;
+	size_t	len;
+	char	*str;
+
+	len = ft_strlen(s1);
+	str = malloc((len + 1) * sizeof(*s1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -58,12 +78,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_strlcpy(str, s + start, size + 1);
 	return (str);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (s)
-		write(fd, s, ft_strlen(s));
 }
 
 char	*ft_strchr(const char *s, int c)

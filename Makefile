@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/11/20 14:13:16 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/11/21 16:10:04 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ HEADERS_LIST	=	ft_printf.h
 
 SRCS_LIST		=	ft_printf.c		ft_utils.c		\
 					ft_utils2.c						\
-					ft_printers.c	#ft_printers2.c	
+					ft_printers.c	ft_printers2.c	
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -81,8 +81,8 @@ ${DIR_OBJS}		:
 # ---- Usual Rules ---- #
 
 clean			:
-					${RM} ${DIR_OBJS}
-					@echo "\n\033[0;31m ✔️ Successfully deleted binaries directory \033[1;36m${DIR_OBJS} !"
+					${RM} ${OBJS}
+					@echo "\n\033[0;31m ✔️ Successfully deleted binaries from directory \033[1;36m${DIR_OBJS} !"
 
 fclean			:	clean
 					${RM} ${NAME}
@@ -92,17 +92,19 @@ re				:	fclean all
 					@echo "\n\033[0;32m ✔️ Successfully re-compiled binaries and lib \033[0;36m${NAME} !"
 
 test			:
-					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
+					${CC} -I ${HEADERS} src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -o ${COMP_NAME}
 					@echo "\n\033[0;32m ✔️ Successfully built test program to \033[0;36m${COMP_NAME} !"
 					@echo "\n\033[1;36mProgram output : \033[0;37m" && ./${COMP_NAME}
+					
 debug			:
-					${CC} ${CFLAGS} -I ${HEADERS} ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -g -o ${COMP_NAME}
+					${CC} -I ${HEADERS} src/test.c ${SRCS_LIST:%.c=${DIR_SRCS}%.c} -g -o ${COMP_NAME}
 					@echo "\n\033[0;32m ✔️ Successfully built debug program to \033[0;36m${COMP_NAME} !"
 
 check_leaks		:	test
 					@echo "\n\n\033[0;32m✔️ Program leaks: \033[0;36m"
-					##leaks --atExit -- ./${COMP_NAME} > leaks.txt
+					leaks --atExit -- ./${COMP_NAME} > leaks.txt
 					cat leaks.txt | grep "leaks for"
+					rm -f leaks.txt
 					
 .PHONY:	all clean fclean re test
 .SILENT:

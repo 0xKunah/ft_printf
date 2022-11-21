@@ -6,31 +6,11 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:37:45 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/11/19 15:40:34 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/11/21 13:39:33 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_utils.h"
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	i;
-	size_t	len;
-	char	*str;
-
-	len = ft_strlen(s1);
-	str = malloc((len + 1) * sizeof(*s1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
 
 void	ft_bzero(void *s, size_t n)
 {
