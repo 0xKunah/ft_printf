@@ -24,5 +24,5 @@
 		<li>%% (displays a percent)</li>
 	</ul>
 	<h2 id="issues">Issues</h2>
-	<p>If you find a bug or encounter an issue using this funciton, feel free to open a issue, or a pull request if you know ho to fix it</p>
+	<p>If you find a bug or encounter an issue using this function, feel free to open a issue, or a pull request if you know ho to fix it</p>
 </body>
