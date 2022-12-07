@@ -11,7 +11,7 @@
 		<li><a href="#supported">Supported conversions</a></li>
 		<li><a href="#issues">Issues</a></li>
 	</ul>
-	<h2 id="supported">Libc functions</h2>
+	<h2 id="supported">Supported conversions</h2>
 	<ul>
 		<li>%c (char)</li>
 		<li>%s (string)</li>
