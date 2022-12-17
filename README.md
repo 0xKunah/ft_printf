@@ -4,7 +4,7 @@
 		<h1>ft_printf</h1>
 	</header>
 	<h5>⚠️This is a 42 project, if you are a 42 student, you shouldn't take this code </h5>
-	<p>Mark on this project: 100</p>
+	<img src="https://badge42.vercel.app/api/v2/clbrb9qt400590gl2qjk1mlc4/project/2886244"/>
 	<h2>Table of content: </h2>
 	<ul>
 		<li><a href="https://cdn.intra.42.fr/pdf/pdf/54596/en.subject.pdf">Subject</a></li>
